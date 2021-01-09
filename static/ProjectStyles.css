@@ -1,0 +1,25 @@
+body {
+	font-family: arial;
+	background-color: black;
+	color: white;
+}
+
+h1 {
+	font-size: 22;
+	font-weight: bold;
+}
+
+h2 {
+    font-size: 36;
+    font-weight: bold;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: coral;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
