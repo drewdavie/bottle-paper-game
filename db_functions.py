@@ -12,7 +12,7 @@ def get_current_string():
     else:
         current_string = ''
 		
-	conn.commit()
+    conn.commit()
     conn.close()
     return current_string
 
@@ -28,7 +28,7 @@ def get_skipped_string():
     else:
         skipped_string = ''
 		
-	conn.commit()
+    conn.commit()
     conn.close()
     return skipped_string
 
@@ -84,7 +84,7 @@ def update_counter():
     cur.execute('SELECT count FROM tbl_turns')
     record = cur.fetchall()
     
-	counter = record[0][0]
+    counter = record[0][0]
     counter = counter + 1
     cur.execute('UPDATE tbl_turns SET count = ?', (counter,))
 	
