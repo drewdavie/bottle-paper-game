@@ -4,12 +4,12 @@ import db_functions as dbf
 
 @route('/static/:filename#.*#')
 def send_static(filename):
-# generic function to load static files e.g. the stylesheet
+    # generic function to load static files e.g. the stylesheet
     return static_file(filename, root='./static/')
 
 @route('/')
 def index():
-	# index_dict used throughout to pass the variables required every time the index page is loaded
+    # index_dict used throughout to pass the variables required every time the index page is loaded
     index_dict = {'string': '', 'skipped': '', 'counter': dbf.get_counter(), 'current_player': dbf.get_player()[0][1], 'score_table': dbf.get_scores()}
     return template('/home/drewdavie/mysite/index.tpl', **index_dict)
 
@@ -27,7 +27,7 @@ def new_string():
 @route('/skip_string')
 def skip_string():
 
-	# if there is already a skipped string, prevent the user from skipping again and append a warning
+    # if there is already a skipped string, prevent the user from skipping again and append a warning
     if len(dbf.get_skipped_string()) > 0:
         index_dict = {'string': dbf.get_current_string(), 'skipped': dbf.get_skipped_string() + ' STOP TRYING TO SKIP TWICE.', 'counter': dbf.get_counter(), 'current_player': dbf.get_player()[0][1], 'score_table': dbf.get_scores()}
         return (template('/home/drewdavie/mysite/index.tpl', **index_dict))
@@ -39,7 +39,7 @@ def skip_string():
 @route('/guessed_string')
 def guessed_string():
 
-	# if there isn't a current string then effectively do nothing
+    # if there isn't a current string then effectively do nothing
     if dbf.get_current_string == '':
         index_dict = {'string': '', 'skipped': dbf.get_skipped_string(), 'counter': dbf.get_counter(), 'current_player': dbf.get_player()[0][1], 'score_table': dbf.get_scores()}
         return (template('/home/drewdavie/mysite/index.tpl', **index_dict))
@@ -51,7 +51,7 @@ def guessed_string():
 @route('/guessed_skipped')
 def guessed_skipped():
 
-	# if there isn't a skipped string then effectively do nothing
+    # if there isn't a skipped string then effectively do nothing
     if dbf.get_skipped_string() == '':
         index_dict = {'string': dbf.get_current_string(), 'skipped': '', 'counter': dbf.get_counter(), 'current_player': dbf.get_player()[0][1], 'score_table': dbf.get_scores()}
         return (template('/home/drewdavie/mysite/index.tpl', **index_dict))
@@ -63,7 +63,7 @@ def guessed_skipped():
 @route('/end_turn')
 def end_turn():
 
-	# at the end of the turn, unset any current or skipped clues, update the player turn count, and reset the counter
+    # at the end of the turn, unset any current or skipped clues, update the player turn count, and reset the counter
     dbf.reset_clues()
     dbf.end_player_turn()
     dbf.reset_counter()
@@ -97,7 +97,7 @@ def submit():
 @route('/submit_clue', method='POST')
 def submit_string():
 
-	# prevent submission of a blank string
+    # prevent submission of a blank string
     if request.forms.get('string') == '':
         return template ('/home/drewdavie/mysite/submit.tpl', message="Clue cannot be blank.", player_message="")
 
@@ -108,7 +108,7 @@ def submit_string():
 @route('/submit_player', method='POST')
 def submit_player():
 
-	# prevent submission of a blank player name
+    # prevent submission of a blank player name
     if request.forms.get('player') == '':
         return template ('/home/drewdavie/mysite/submit.tpl', message="", player_message="Player cannot be blank.")
 
